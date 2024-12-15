@@ -1,0 +1,31 @@
+<!-- templates/dashboard.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dashboard</title>
+</head>
+<body>
+    <h1>Welcome {{ user.username }}!</h1>
+    <h2>Your Points: {{ customer.points }}</h2>
+    <h3>Your Tier: {{ customer.tier }}</h3>
+
+    <h4>Redeem Rewards:</h4>
+    <ul>
+        {% for reward in rewards %}
+            <li>{{ reward.name }} - {{ reward.points_required }} points
+                <a href="{% url 'redeem_reward' reward.id %}">Redeem</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h4>Transactions:</h4>
+    <ul>
+        {% for transaction in transactions %}
+            <li>{{ transaction.transaction_type }} - {{ transaction.amount }} - Points Earned: {{ transaction.points_earned }} </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
